@@ -17,3 +17,7 @@ The model initializes the seaice to be disks of uniform thickness surrounding ea
 **Overview of steps to creating these files:**
 
 Start with a global base mesh file - this can be an atmospheric initial condition file or one of the mesh files found at https://mpas-dev.github.io/atmosphere/atmosphere_meshes.html
+
+Create a file with the bathymetry defined on the global base (mpasa) mesh - this will use a 15s bathymetry file that can be found at /glade/campaign/univ/ucsu0085/build-mpas-ocean-data/SRTM15_plus_earth_relief_15s_original.nc. Compile the bathymetry_to_mpasa.f90 file with the netCDF library and run. This will require the global base mesh file as input, and you will need to specify a name for the global base mesh bathymetry file that will be created. The bathymetry output by this program will have negative values where the ocean domain is defined, and zero for land. The program has an example block the user may use as a template for user-specified modifications to the ocean domain.
+
+
