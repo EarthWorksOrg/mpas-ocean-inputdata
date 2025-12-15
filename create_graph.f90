@@ -16,7 +16,7 @@ program create_graph
 !        84444 edges. However, I only found 84244 edges in the file.
 !        Please specify the correct number of edges in the first line of the file.
 
-!Edit the graph files. Replace the second number of line one
+!Edit the output graph file. Replace the second number of line one
 !  with the second value of edges specified in the warning message.
 
 use netcdf
