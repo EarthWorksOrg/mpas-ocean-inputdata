@@ -1,10 +1,6 @@
 program build_interpolated_velocities
 
-! compile with 
-! gfortran_allnet -o build_interpolated_velocities.out -fopenmp -ffree-line-length-none ~/Documents/build_interpolated_velocities.F90
-!
-! debug with
-! gfortran_allnet -g -c -fbacktrace -ffree-line-length-none -ffpe-trap=invalid,zero,overflow -O0 -fcheck=bounds,do,mem,recursion -finit-real=nan  ~/Documents/build_interpolated_velocities.f90; gfortran_allnet -o build_interpolated_velocities.out build_interpolated_velocities.o
+! compile with mpi, hdf5, netcdf, abnd pnetcdf libraries
 !
 ! this program works from restart of the coarser resolution and the interpolation weights file
 !   and replaces the zero velocities in the finer resolution file with interpolated velocities.
