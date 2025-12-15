@@ -1,6 +1,6 @@
 program build_interpolated_velocities
 
-! compile with mpi, hdf5, netcdf, abnd pnetcdf libraries
+! compile with mpi, hdf5, netcdf, and pnetcdf libraries
 !
 ! this program works from restart of the coarser resolution and the interpolation weights file
 !   and replaces the zero velocities in the finer resolution file with interpolated velocities.

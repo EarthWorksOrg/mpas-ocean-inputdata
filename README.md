@@ -11,13 +11,13 @@ Input files needed by EarthWorks:
 
 Initial conditions if not starting from a restart
 
-Ocean temperature and salinity are provided by the mesh and input file. Velocities are zero. The sea surface height is flat.
+Ocean temperature and salinity are provided by the mesh and input file. Velocities are zero. The sea surface height is flat. Ocean files have 100 layers and a maximum depth of 6000m. The nominal ocean layer depths are in file /glade/campaign/univ/ucsu0085/build-mpas-ocean-data/refBottomDepth. 
 The model initializes the seaice to be disks of uniform thickness surrounding each pole. This is placed atop the flat ocean.
 
 **Overview of steps to creating these files:**
 
 Start with a global base mesh file - this can be an atmospheric initial condition file or one of the mesh files found at https://mpas-dev.github.io/atmosphere/atmosphere_meshes.html
 
-Create a file with the bathymetry defined on the global base (mpasa) mesh - this will use a 15s bathymetry file that can be found at /glade/campaign/univ/ucsu0085/build-mpas-ocean-data/SRTM15_plus_earth_relief_15s_original.nc. Compile the bathymetry_to_mpasa.f90 file with the netCDF library and run. This will require the global base mesh file as input, and you will need to specify a name for the global base mesh bathymetry file that will be created. The bathymetry output by this program will have negative values where the ocean domain is defined, and zero for land. The program has an example block the user may use as a template for user-specified modifications to the ocean domain.
+Create a file with the bathymetry defined on the global base (mpasa) mesh - this will use a 15s bathymetry file that can be found at /glade/campaign/univ/ucsu0085/build-mpas-ocean-data/SRTM15_plus_earth_relief_15s_original.nc. Compile the bathymetry_to_mpasa.f90 file with the netCDF library and run. This will require the global base mesh file as input, and you will need to specify a name for the global base mesh bathymetry file that will be created. The bathymetry output by this program will have negative values where the ocean domain is defined, and zero for land. The program has an example block the user may use as a template for user-specified modifications to the ocean domain - look for '!15km - fill/dredge'.
 
-
+Create a file defining mesh variables on the ocean domain, and basic initial state variables to start the ocean from rest (except T and S, which will be appended later), and to enable seaice to start as specified from the model namelist - build_culled_file_from_bathy.f90 is built with mpi, hdf5, netcdf, and pnetcdf libraries. It requires as input the global base mesh file, the global base mesh bathymetry file, and will write the ocean domain mesh file which name the user will specify. There is also a template block that allows the user to modify the domain - look for '! 15km adjustment'.
