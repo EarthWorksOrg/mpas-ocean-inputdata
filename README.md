@@ -38,5 +38,20 @@ You will get something like:
 
 Edit the output graph file. Replace the second number of line one with the second value of edges specified in the warning message.
 
+**At this point you can choose to** either 1) add Levitus temperature and salinity to the ocean mesh file or 2) interpolate existing ocean and seaice restarts to this mesh, modifying the ocean mesh file and generating ocean and seaice restart files.
 
-Questions? donald.dazlich@colostate.edu, dondazlich@gmail.com
+1) Add Levitus T and S to the ocean mesh file - build_ocean_ts_levitus.f90 is compiled with mpi, hdf5, netcdf, and pnetcdf libraries. User enters the ocean mesh file name to be modifed. Levitus data can be found at /glade/campaign/univ/ucsu0085/build-mpas-ocean-data/.
+
+2)
+
+**Optional input files**
+
+Monthly mean surface salinity forcing for OMIP runs -
+
+Runoff remapping files -
+
+Transect and basin files for some diagnostics - 
+
+**Some notes on the domain for MPAS ocean and seaice**
+
+**Questions? donald.dazlich@colostate.edu, dondazlich@gmail.com**
