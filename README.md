@@ -1,4 +1,4 @@
-**Creating the files needed for MPAS-Ocean/Seaice in EarthWorks**
+#**Creating the files needed for MPAS-Ocean/Seaice in EarthWorks**
 Input files needed by EarthWorks:
   Required:
     Mesh and Input file - this has all the mpas metrics plus initial conditions for the ocean. Can be a restart file.
@@ -42,7 +42,17 @@ Edit the output graph file. Replace the second number of line one with the secon
 
 1) Add Levitus T and S to the ocean mesh file - build_ocean_ts_levitus.f90 is compiled with mpi, hdf5, netcdf, and pnetcdf libraries. User enters the ocean mesh file name to be modifed. Levitus data can be found at /glade/campaign/univ/ucsu0085/build-mpas-ocean-data/.
 
-2)
+or
+
+2) create interpolated restarts from previous EarthWorks runs
+
+Create an interpolation weights file - build_ocean_ice_interpolation.f90 is compiled with netcdf and openmp. The user specifies an input ocean restart file from another mesh, the current mesh ocean mesh file, and a file for the interpolation weights.
+
+Interpolate a seaice restart - build_ice_restart_file.f90 will interpolate prognostic variables from a typically coarser mesh restart file to the target mesh. The user will need to specify the target ocean mesh file, the intepolation weights file generated above, an input seaice restart at the coarser resolution, and a name for the output seaice restart file.
+
+Interpolate an ocean restart - build_ocn_restart_file.f90 will interpolate prognostic variables from a typically coarser mesh restart file to the target mesh. The user will need to specify the target oc
+ean mesh file, the intepolation weights file generated above, an input ocean restart at the coarser
+resolution, and a name for the output ocean restart file.
 
 **Optional input files**
 
