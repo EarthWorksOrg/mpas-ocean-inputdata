@@ -14,6 +14,7 @@ setenv REFBOTTOMDEPTH inputdata/refBottomDepth
 setenv LEVITUS_TEMPERATURE_FILE inputdata/PotentialTemperature.100levels.Levitus.EN4_1900estimate.200813.nc
 setenv LEVITUS_SALINITY_FILE inputdata/Salinity.100levels.Levitus.EN4_1900estimate.200813.nc
 setenv TRANSECT_TEMPLATE_FILE inputdata/QU60_mocBasinsAndTransects20210623.nc
+setenv SALINITY_PATH inputdata/salinity'
 
 # target grid specific input files
 setenv GLOBAL_BASE_MESH_FILE inputdata/cami_01-01-2000_00Z_mpasa60_L58_CFSR_c240905.nc
