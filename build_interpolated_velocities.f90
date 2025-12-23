@@ -1,6 +1,8 @@
 program build_interpolated_velocities
 
-! compile with mpi, hdf5, netcdf, and pnetcdf libraries
+! compile with netcdf, pnetcdf, and, optionally openmp
+
+! setenv OMP_NUM_THREADS 16
 !
 ! this program works from restart of the coarser resolution and the interpolation weights file
 !   and replaces the zero velocities in the finer resolution file with interpolated velocities.
@@ -189,8 +191,8 @@ implicit none
       read(5,*)maxiter
       print*,'enter number of iterations between restarts'
       read(5,*)numiter
-      print*,'enter number of levels to compute'
-      read(5,*)maxlevel
+      !print*,'enter number of levels to compute'
+      !read(5,*)maxlevel
 
       ! open the coarse restart file
       rc = nf90mpi_open(mpi_comm_world,trim(coarsefile),nf90mpi_nowrite,info,ncidc)

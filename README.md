@@ -50,9 +50,10 @@ Create an interpolation weights file - build_ocean_ice_interpolation.f90 is comp
 
 Interpolate a seaice restart - build_ice_restart_file.f90 will interpolate prognostic variables from a typically coarser mesh restart file to the target mesh. The user will need to specify the target ocean mesh file, the intepolation weights file generated above, an input seaice restart at the coarser resolution, and a name for the output seaice restart file.
 
-Interpolate an ocean restart - build_ocn_restart_file.f90 will interpolate prognostic variables from a typically coarser mesh restart file to the target mesh. The user will need to specify the target oc
-ean mesh file, the intepolation weights file generated above, an input ocean restart at the coarser
-resolution, and a name for the output ocean restart file.
+Interpolate an ocean restart - build_ocn_restart_file.f90 will interpolate prognostic variables from a typically coarser mesh restart file to the target mesh. The user will need to specify the target oc ean mesh file, the intepolation weights file generated above, an input ocean restart at the coarser resolution, and a name for the output ocean restart file. This step still leaves the velocities at rest.
+
+Interpolate the ocean currents - build_interpolated_velocities.f90 creates interpolated velocities for a restart on the new ocean mesh using velocities from an available restart. Because interpolating velocities is problematic, source mesh vorticity and divergence are computed and it is these scalars that are interpolated. Then an elliptic equation is solved by Jacobi iteration to get the desired mesh velocities. Because at higher resolutions convergence can be slow this program allows the user to write solution restarts at specified intervals. For an initial solution the user provides the source ocean restart file, the interpolation weights file, maximum permissible solution residual, maximum permissible solution iterations, number of iterations between restarts, and the output ocean restart file of the last step.
+
 
 **Optional input files**
 
