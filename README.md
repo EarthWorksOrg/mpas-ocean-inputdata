@@ -54,6 +54,11 @@ Interpolate an ocean restart - build_ocn_restart_file.f90 will interpolate progn
 
 Interpolate the ocean currents - build_interpolated_velocities.f90 creates interpolated velocities for a restart on the new ocean mesh using velocities from an available restart. Because interpolating velocities is problematic, source mesh vorticity and divergence are computed and it is these scalars that are interpolated. Then an elliptic equation is solved by Jacobi iteration to get the desired mesh velocities. Because at higher resolutions convergence can be slow this program allows the user to write solution restarts at specified intervals. For an initial solution the user provides the source ocean restart file, the interpolation weights file, maximum permissible solution residual, maximum permissible solution iterations, number of iterations between restarts, and the output ocean restart file of the last step.
 
+Finally, the interpolated restarts need to be managed further to prepare them for EarthWorks input.
+	cp ocean_mesh_file to an oceanIC mesh file which will get updated interpolated data for prognostic variables.
+	ncks -v temperature,salinity,layerThickness,normalVelocity,normalBarotropicVelocity new_ocean_restart_file  oceanIC_mesh_file
+	Build and run modify_ic.f90 with netcdf which will update derived mesh file variables using restart variables. User will specify the new ocean restart file and the oceanIC mesh file.
+	Build and run modify_xtime.f90 with netcdf which will reset the time variables in the seaice restart for starting a new run. User will specify the new seaice restart file.
 
 **Optional input files**
 
